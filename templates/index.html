@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %} Home Page {% endblock %}}
+
+{% block body %}
+
+<div class="container">
+  <div class="row">
+    <div class="col align-self-center my-5">
+        <div class="container">
+          <h1 class="display-3">Book Reviews</h1>
+          <hr class="my-3">
+          <p class="lead">Here you can find your favourite books by their detail info such as ISBN, year, author, etc. You can see the rating for the book you desire after you logged in here.</p>
+          <p></p>
+          <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{{url_for("login")}}" role="button">Login</a>
+        </div>
+    </div>
+    <div class="col">
+    </div>
+  </div>
+</div>
+{% endblock %}
