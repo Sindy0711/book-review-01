@@ -15,18 +15,19 @@
                   <p class="lead">Title: {{result.title}}</p>
                   <p class="lead">Author: {{result.author}}</p>
                   <p class="lead">Year: {{result.year}}</p>
+                  <p class="lead">descriptions: {{descriptions}}</p>
                 </div>
               </div>
             </div>
 
             <div class="col-md-4 d-flex align-items-center">
               <div class="list-group">
-                <img src="../static/goodreads.jpg" alt="goodreads logo" class="img-fluid mb-3">
+                <img src="{{ cover }}" alt="logo" class="img-fluid mb-3">
                 <button type="button" class="btn btn-secondary mb-3">
-                  Average Rating: <span class="badge badge-light">{{ goodreads["average_rating"] }}</span>
+                  Đánh giá: <span class="badge badge-light">{{ openlib["average"] }}</span>
                 </button>
                 <button type="button" class="btn btn-secondary mb-3">
-                  # of Ratings: <span class="badge badge-light">{{ goodreads["work_reviews_count"]}}</span>
+                  Số người đánh giá: <span class="badge badge-light">{{ openlib["count"] }}</span>
                 </button>
               </div>
 

@@ -161,7 +161,7 @@ def details(bookid):
         #Get book details
         result = db.execute(text("SELECT * from books WHERE bookid = :bookid"), {"bookid": bookid}).fetchone()
 
-        #Get API data from GoodReads
+        #Get API data from OpenLibrary
         try:
             #Check API to get 'works' key for putting it to a new link in order to get ratings count.
             openlib_details = requests.get(f"https://openlibrary.org/api/books?bibkeys=ISBN:{result.isbn}&jscmd=details&format=json")
@@ -209,7 +209,8 @@ def details(bookid):
         return redirect(url_for("details", bookid=bookid))
 
 
-# Create app's API -- Phần này không hiểu làm gì cả
+
+# Create app's API 
 @app.route("/api/<string:isbn>")
 @login_required
 def api(isbn):
@@ -223,9 +224,11 @@ def api(isbn):
     if book is None:
         return jsonify({"error": "Not Found"}), 404
     # Get GoodReads API datad
-    goodreads2 = goodreads = requests.get("https://openlibrary.org/api/books?bibkeys=ISBN:1857231082&jscmd=details&format=json")
-    key1 = goodreads2.json()["ISBN:1857231082"]["details"]['works'][0]['key']
-    goodreads3 = requests.get("https://openlibrary.org/" + key1 + "/ratings.json").json()
+    goodreads2  = goodreads = requests.get("https://openlibrary.org/api/books?bibkeys=ISBN:1857231082&jscmd=details&format=json")
+    key1 = goodreads2 .json()["ISBN:1857231082"]["details"]['works'][0]['key']
+    goodreads3 = requests.get(
+        f"https://openlibrary.org/{key1}/ratings.json"
+    ).json()
     goodreads_book = goodreads3["summary"]
     # Return book details in JSON
     return jsonify({
