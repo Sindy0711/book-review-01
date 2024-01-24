@@ -1,49 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- Bootstrap CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="apple-touch-icon" sizes="57x57" href="../static/favicon/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="../static/favicon/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="../static/favicon/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../static/favicon/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="../static/favicon/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="../static/favicon/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="../static/favicon/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="../static/favicon/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/favicon/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../static/favicon/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="../static/favicon/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="../static/favicon/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="..\static\site.css">
-    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="..\static\site.css" />
+
+    <title>
+      {% block title %}
+
+      {% endblock %}
+    </title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <a class="navbar-brand" href="{{url_for("index")}}">Book Review</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand" href="{{ url_for('index') }}"><img src="./static/book-high-resolution-logo.png" alt="Description of the image" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="#navbarNav">
           <ul class="navbar-nav ml-auto">
             {% if session.logged_in %}
-
-            <li class="nav-item active">
-              <h6 class="nav-link">Welcome, {{session.firstname}}</h6>
-            </li>
-            <li class="nav-item">
-              <a class="btn btn-outline-light btn-success mr-2" href="{{url_for('search')}}" role="button">Search</a>
-            </li>
-            <li class="nav-item">
-              <li><a href="{{url_for("logout")}}"><button class="btn btn-outline-light float-right" type="submit">Logout</button></a></li>
-            </li>
+              <li class="nav-item active">
+                <h6 class="nav-link color-default">Welcome, {{ session.firstname }}</h6>
+              </li>
+              <li class="nav-item">
+                <a class="btn btn-outline-light btn-success mr-2" href="{{ url_for('search') }}" role="button">Search</a>
+              </li>
+              <li class="nav-item">
+                <li>
+                  <a href="{{ url_for('logout') }}"><button class="btn btn-default float-right" type="submit">Logout</button></a>
+                </li>
+              </li>
             {% else %}
-            <li class="nav-item">
-              <a href="{{url_for("register")}}"><button class="btn btn-outline-light" type="submit">Sign Up</button></a>
-            </li>
+              <li class="nav-item">
+                <a href="{{ url_for('register') }}"><button class="btn btn-default" type="submit">Sign Up</button></a>
+              </li>
             {% endif %}
           </ul>
         </div>
       </div>
     </nav>
-      {% block body %}
-      {% endblock %}
+    {% block body %}
 
-      <!-- JavaScript components for Bootstrap -->
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    {% endblock %}
+
+    <!-- JavaScript components for Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>

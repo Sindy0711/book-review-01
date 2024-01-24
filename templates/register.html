@@ -1,45 +1,53 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 
-{% block title %} Register {% endblock %}
+{% block title %}
+  Register
+{% endblock %}
 
 {% block body %}
-<div class="container">
+  <div class="container">
     <div class="row">
-        <div class="col-6">
-          <div class="register-form">
-            <h4 class="card-title mb-4 mt-1">Sign Up</h4>
-                  <form action="/register" method="post">
-                  <div class="form-group">
-                    <label>First Name</label>
-                      <input name="first_name" class="form-control" placeholder="First" type="text" required>
-                  </div> <!-- form-group// -->
-                  <div class="form-group">
-                    <label>Last Name</label>
-                      <input name="last_name" class="form-control" placeholder="Last" type="text" required>
-                  </div> <!-- form-group// -->
-                  <div class="form-group">
-                    <label>Email</label>
-                      <input name="email" class="form-control" placeholder="email@" type="email" required>
-                  </div> <!-- form-group// -->
-                  <div class="form-group">
-                    <label>Choose password</label>
-                      <input name="password1" class="form-control" placeholder="******" type="password" required>
-                  </div> <!-- form-group// -->
-                  <div class="form-group">
-                    <label>Confirm password</label>
-                      <input name="password2" class="form-control" placeholder="******" type="password" required>
-                  </div> <!-- form-group// -->
-                  <div class="form-group">
-                  </div> <!-- form-group// -->
-                  <div class="form-group">
-                      <button type="submit" class="btn btn-primary btn-block"> Create  </button>
-                  </div> <!-- form-group// -->
-                  <p class="text-center"><a href="{{url_for("login")}}" class="">Already have an account?</a></p>
-                </form>
-            </div>
-        </div>
-        <div class="col-6"><!--image--></div>
-    </div>
-</div>
+      <div class="col-4"></div>
+      <div class="col-4">
+        <form action="/register" method="post" class="register-form">
+          <p class="title">Sign Up</p>
+          <p class="message">Signup now and get full access to our app.</p>
+          <div class="flex">
+            <label>
+              <input class="form-control" name="first_name" type="text" placeholder="First" required="" />
+              <span>Firstname</span>
+            </label>
 
+            <label>
+              <input class="form-control" name="last_name" type="text" placeholder="Last" required="" />
+              <span>Lastname</span>
+            </label>
+          </div>
+
+          <label>
+            <input class="form-control" name="email" type="email" placeholder="email@" required="" />
+            <span>Email</span>
+          </label>
+
+          <label>
+            <input class="form-control" name="password1" type="password" placeholder="******" required="" />
+            <span>Password</span>
+          </label>
+          <label>
+            <input class="form-control" name="password2" type="password" placeholder="******" required="" />
+            <span>Confirm password</span>
+          </label>
+          <button class="submit" type="submit">Submit</button>
+          <p class="signin">
+            Already have an acount ? <a href="{{ url_for('login') }}">Signin</a>
+          </p>
+        </form>
+      </div>
+      <div class="col-4"></div>
+
+      <div class="col-6">
+        <!-- image -->
+      </div>
+    </div>
+  </div>
 {% endblock %}
