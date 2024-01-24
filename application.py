@@ -100,7 +100,17 @@ def register():
             
             #success - redirect to login
             db.commit()
-            return redirect(url_for("index"))
+            Q = db.execute(
+                text("SELECT * FROM users WHERE email LIKE :email"),
+                {"email": email},
+            ).fetchone()
+            print(Q.userid)
+                    # Remember which user has logged in
+            session["user_id"] = Q.userid
+            session["email"] = Q.email
+            session["firstname"] = Q.firstname
+            session["logged_in"] = True
+            return redirect(url_for("search"))
 
 
 @app.route("/login", methods=["GET", "POST"])
