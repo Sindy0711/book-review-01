@@ -2,8 +2,11 @@ import os, requests
 
 from flask import Flask, session, render_template, redirect, request, url_for, jsonify
 from flask_session import Session
-from sqlalchemy import create_engine
-from sqlalchemy.sql import text
+# from flask_wtf import FlaskForm
+# from wtforms import StringField, PasswordField, SubmitField
+# from wtforms.validators import InputRequired, Email, Length, EqualTo
+from werkzeug.security import generate_password_hash
+from sqlalchemy import create_engine ,text
 from sqlalchemy.orm import scoped_session, sessionmaker
 from functools import wraps
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -12,6 +15,14 @@ from dotenv import load_dotenv  #add dotenv load environment
 load_dotenv() 
 
 app = Flask(__name__)
+
+# class RegistrationForm(FlaskForm):
+#     first_name = StringField('First Name', validators=[InputRequired()])
+#     last_name = StringField('Last Name', validators=[InputRequired()])
+#     email = StringField('E-mail', validators=[InputRequired(), Email()])
+#     password1 = PasswordField('Password', validators=[InputRequired(), Length(min=8), EqualTo('password2', message='Passwords must match')])
+#     password2 = PasswordField('Confirm password', validators=[InputRequired()])
+#     submit = SubmitField('Register')
 
 # Check for environment variable
 if not os.getenv("DATABASE_URL"):
@@ -28,6 +39,7 @@ Session(app)
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 key = os.getenv("KEY")
+# app.config['SECRET_KEY'] = os.urandom(24)
 
 ## Helper
 def login_required(f):
@@ -43,13 +55,15 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-@app.route("/")
+@app.route('/')
 def index():
-    return render_template("index.html")
+    if session.get("email") is not None:
+        return render_template('search.html')
+    else:
+        return render_template('index.html')
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-
     # if GET, show the registration form
     if request.method == "GET":
         return render_template("register.html")
@@ -83,10 +97,11 @@ def register():
                 )
             except Exception as e:
                 return render_template("error.html", message=e)
-
+            
             #success - redirect to login
             db.commit()
-            return redirect(url_for("login"))
+            return redirect(url_for("index"))
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

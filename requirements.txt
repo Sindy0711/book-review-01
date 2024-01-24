@@ -1,5 +1,6 @@
 Flask
 Flask-Session
+Flask-WTF
 psycopg2
 SQLAlchemy
 gunicorn
