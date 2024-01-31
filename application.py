@@ -10,6 +10,7 @@ from sqlalchemy import create_engine ,text
 from sqlalchemy.orm import scoped_session, sessionmaker
 from functools import wraps
 from werkzeug.security import check_password_hash, generate_password_hash
+from sqlalchemy.exc import SQLAlchemyError
 
 from dotenv import load_dotenv  #add dotenv load environment
 load_dotenv() 
