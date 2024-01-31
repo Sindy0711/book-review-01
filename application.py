@@ -100,6 +100,7 @@ def register():
                 return render_template("error.html", message=e)
             
             db.commit()
+            
             #success - redirect to login
             Q = db.execute(
                 text("SELECT * FROM users WHERE email LIKE :email"),
