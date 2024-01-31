@@ -99,14 +99,14 @@ def register():
             except Exception as e:
                 return render_template("error.html", message=e)
             
-            #success - redirect to login
             db.commit()
+            #success - redirect to login
             Q = db.execute(
                 text("SELECT * FROM users WHERE email LIKE :email"),
                 {"email": email},
             ).fetchone()
             print(Q.userid)
-                    # Remember which user has logged in
+            # Remember which user has logged in
             session["user_id"] = Q.userid
             session["email"] = Q.email
             session["firstname"] = Q.firstname
@@ -132,7 +132,7 @@ def login():
 
         # Query database for email and password
         Q = db.execute(text("SELECT * FROM users WHERE email LIKE :email"), {"email": form_email}).fetchone()
-
+        db.commit()
         # User exists ?
         if Q is None:
             return render_template("error.html", message="User doesn't exists")
