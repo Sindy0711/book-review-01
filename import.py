@@ -3,7 +3,7 @@ import os,csv
 from sqlalchemy import create_engine , text
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-engine = create_engine("postgresql://postgres:123456@localhost:5432/postgres")
+engine = create_engine("postgresql://book_review_0wx8_user:Uaf6w33bDFMunyPC8dQa4DtSeYQiwhyJ@dpg-cmt29dgl6cac73aq8o7g-a.singapore-postgres.render.com/book_review_0wx8")
 db = scoped_session(sessionmaker(bind=engine))
 
 

@@ -133,7 +133,6 @@ def login():
 
         # Query database for email and password
         Q = db.execute(text("SELECT * FROM users WHERE email LIKE :email"), {"email": form_email}).fetchone()
-       
         db.commit()
         # User exists ?
         if Q is None:
