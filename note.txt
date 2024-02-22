@@ -1,0 +1,15 @@
+Get 'works' key
+https://openlibrary.org/api/books?bibkeys=ISBN:0380795272&jscmd=details&format=json
+
+Get ratings data
+https://openlibrary.org/" + openlibrary_workskey + "/ratings.json
+
+get cover book
+https://openlibrary.org/api/books?bibkeys=ISBN:{result.isbn}&jscmd=data&format=json
+
+get descriptions
+https://openlibrary.org/works/OL554685W.json
+
+set FLASK_APP=application.py set set DB_URL="postgresql://book_review_0wx8_user:Uaf6w33bDFMunyPC8dQa4DtSeYQiwhyJ@dpg-cmt29dgl6cac73aq8o7g-a.singapore-postgres.render.com/book_review_0wx8"
+DATABASE_URL="postgresql://postgres:toan123@localhost:5435/book_review_website_flask" using the local database 
+
